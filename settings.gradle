@@ -1,0 +1,1 @@
+include ':app','viewpager2','databinding','dagger2','navbottom'
