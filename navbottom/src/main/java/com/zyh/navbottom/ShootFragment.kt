@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.fragment_my.*
  *Author:zyh
  *Description:
  */
-class MyFragment : Fragment(){
+class ShootFragment : Fragment(){
 
     private var textStr : String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +25,7 @@ class MyFragment : Fragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return LayoutInflater.from(activity).inflate(R.layout.fragment_my,container,false)
+        return LayoutInflater.from(activity).inflate(R.layout.fragment_home,container,false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -35,9 +35,9 @@ class MyFragment : Fragment(){
 
 
     companion object{
-        fun newInstance(textStr: String): MyFragment{
+        fun newInstance(textStr: String): ShootFragment{
             val bundle = Bundle()
-            val fragment = MyFragment()
+            val fragment = ShootFragment()
             bundle.putString("textStr",textStr)
             fragment.arguments = bundle
             return fragment

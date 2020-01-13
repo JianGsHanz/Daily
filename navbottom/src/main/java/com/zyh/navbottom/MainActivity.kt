@@ -11,7 +11,7 @@ import java.util.*
 class MainActivity : FragmentActivity() {
 
     private val mTitles =
-        arrayOf("首页", "社区", "拍摄", "消息", "发现")
+        arrayOf("首页", "社区", "拍摄", "消息", "我的")
     private val mIconUnselectIds = intArrayOf(
         R.mipmap.tab1, R.mipmap.tab2,
         R.mipmap.tab3, R.mipmap.tab4, R.mipmap.tab5
@@ -47,11 +47,11 @@ class MainActivity : FragmentActivity() {
 
         //初始化fragment
         val fragments = ArrayList<Fragment>().apply {
-            add(MyFragment.instance("首页"))
-            add(MyFragment.instance("社区"))
-            add(MyFragment.instance("拍摄"))
-            add(MyFragment.instance("消息"))
-            add(MyFragment.instance("发现"))
+            add(HomeFragment.newInstance(mTitles[0]))
+            add(BbsFragment.newInstance(mTitles[1]))
+            add(ShootFragment.newInstance(mTitles[2]))
+            add(MsgFragment.newInstance(mTitles[3]))
+            add(MyFragment.newInstance(mTitles[4]))
         }
 
         //初始化NavBottom
