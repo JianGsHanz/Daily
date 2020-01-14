@@ -1,1 +1,1 @@
-include ':app','viewpager2','databinding','dagger2','navbottom'
+include ':app','viewpager2','databinding','dagger2','navbottom','popupwindow'
