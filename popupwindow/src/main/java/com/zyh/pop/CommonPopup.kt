@@ -2,6 +2,8 @@ package com.zyh.pop
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Rect
+import android.os.Build
 import android.view.Gravity
 import android.view.View
 import android.widget.PopupWindow
@@ -18,21 +20,6 @@ class CommonPopup : PopupWindow {
     constructor(context: Context){
         mPopupController = PopupController(context, this)
     }
-    /**
-     * 弹框的高度
-     * @return
-     */
-    override fun getHeight(): Int {
-        return super.getHeight()
-    }
-
-    /**
-     * 弹框的宽度
-     * @return
-     */
-    override fun getWidth(): Int {
-        return super.getWidth()
-    }
 
     /**
      * 弹框消失
@@ -41,53 +28,22 @@ class CommonPopup : PopupWindow {
         super.dismiss()
         mPopupController.setBackGroundLevel(1.0f) // 恢复透明度
     }
-    //--------------------------------popupWindow的显示位置---------------------------------------
-
-    @SuppressLint("NewApi")
-    fun showNormal(parent: View?): CommonPopup {
-        showAsDropDown(parent,  0, 0,Gravity.CENTER)
-        return this
-    }
-
-
-    @SuppressLint("NewApi")
-    fun showLeft(parent: View?): CommonPopup {
-        showAsDropDown(parent,  0, 0,Gravity.LEFT)
-        return this
-    }
-
-
-    @SuppressLint("NewApi")
-    fun showUp(parent: View?): CommonPopup {
-        showAsDropDown(parent,  0, 0,Gravity.TOP)
-        return this
-    }
-
-
-    @SuppressLint("NewApi")
-    fun showRight(parent: View?): CommonPopup {
-        showAsDropDown(parent,  0, 0,Gravity.RIGHT)
-        return this
-    }
-
-    /**
-     * 展示在目标parent的左下方
-     * @param parent
-     * @param gravity
-     * @return
-     */
-    @SuppressLint("NewApi")
-    fun showBottom(parent: View?): CommonPopup {
-        showAsDropDown(parent,  0, 0,Gravity.BOTTOM)
-        return this
-    }
 
     fun showParentBottom(parent: View?): CommonPopup {
         showAtLocation(parent,Gravity.BOTTOM,0,0)
         return this
     }
 
-    fun getController():PopupController = mPopupController
+    //7.0 兼容
+    override fun showAtLocation(parent: View?, gravity: Int, x: Int, y: Int) {
+        if (Build.VERSION.SDK_INT >= 24) {
+            val rect = Rect()
+            parent!!.getGlobalVisibleRect(rect)
+            val h: Int = parent.resources.displayMetrics.heightPixels - rect.bottom
+            height = h
+        }
+        super.showAtLocation(parent, gravity, x, y)
+    }
 
     //Builder
     class Builder {

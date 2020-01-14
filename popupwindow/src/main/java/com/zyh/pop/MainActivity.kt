@@ -1,6 +1,7 @@
 package com.zyh.pop
 
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.DefaultItemAnimator
@@ -37,7 +38,7 @@ class MainActivity : FragmentActivity() {
             .setOutsideTouchable(true)
             .create()
         //初始化rv
-       val rv = pop.getController().mPopupView!!.findViewById<RecyclerView>(R.id.rv)
+       val rv = pop.mPopupController.mPopupView!!.findViewById<RecyclerView>(R.id.rv)
         rvPopAdapter = RvPopAdapter(this,list)
         rv.apply {
             layoutManager = LinearLayoutManager(this@MainActivity,LinearLayoutManager.VERTICAL,false)
@@ -56,7 +57,7 @@ class MainActivity : FragmentActivity() {
     }
 
     fun onClick(view: View) {
-        pop.showBottom(bt_show)
+        pop.showAtLocation(bt_show,Gravity.BOTTOM,0,0)
         //背景变暗需show后设置
         pop.mPopupController.setBackGroundLevel(0.6f)
         rvPopAdapter.setData(list)
