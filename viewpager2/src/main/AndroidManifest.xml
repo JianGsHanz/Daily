@@ -18,7 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="com.zyh.studydemo.MainActivity">
+        <activity android:name="com.zyh.viewpage2.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
