@@ -1,1 +1,1 @@
-include ':app','viewpager2','databinding','dagger2','navbottom','popupwindow' ,'password_input_view'
+include ':app','viewpager2','databinding','dagger2','navbottom','popupwindow' ,'password_input_view','zhihu'
