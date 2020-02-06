@@ -15,7 +15,7 @@ class SecondActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
 
-        MyApp.app!!.activityCommponent.inject(this)
+        MyApp.app.activityCommponent.inject(this)
 
         Toast.makeText(this,"SecondActivity = ${context.toString()}",Toast.LENGTH_SHORT).show()
     }

@@ -26,7 +26,7 @@ class MainActivity : FragmentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        MyApp.app!!.activityCommponent.inject(this)
+        MyApp.app.activityCommponent.inject(this)
 
         Log.e("MainActivity",test.name)
         Toast.makeText(this,"MainActivity = ${context.toString()}", Toast.LENGTH_SHORT).show()
