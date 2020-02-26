@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">jsBridge</string>
+    <string name="android_js">android调js</string>
+</resources>
