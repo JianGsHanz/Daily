@@ -6,9 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.lifecycle.ViewModelProvider
 import com.zyh.databinding.R
+import com.zyh.databinding.adapter.RvAdapter
 import com.zyh.databinding.databinding.FragmentHomeBinding
+import com.zyh.databinding.model.Person
 import com.zyh.databinding.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 
@@ -19,7 +21,17 @@ import kotlinx.android.synthetic.main.fragment_home.*
  */
 class HomeFragment :Fragment(){
 
-    lateinit var homeBinding: FragmentHomeBinding
+    private lateinit var homeBinding: FragmentHomeBinding
+    private val rvAdapter by lazy {
+        RvAdapter(this)
+    }
+    private val list :MutableList<Person> by lazy {
+        mutableListOf<Person>().apply {
+            (1..10).forEachIndexed { _, i ->
+                add(Person("Js$i",0,""))
+            }
+        }
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -31,7 +43,11 @@ class HomeFragment :Fragment(){
             container,
             false
         ) as FragmentHomeBinding
-        homeBinding.model = HomeViewModel(this)
+        val amvf = ViewModelProvider.AndroidViewModelFactory(activity!!.application)
+        val viewModelProvider = ViewModelProvider(activity!!, amvf)
+        val viewModel = viewModelProvider.get(HomeViewModel::class.java)
+        rvAdapter.setViewModel(viewModel)
+        homeBinding.rv.adapter = rvAdapter
         return homeBinding.root
     }
 
@@ -39,15 +55,15 @@ class HomeFragment :Fragment(){
         super.onViewCreated(view, savedInstanceState)
 
         bt_load.setOnClickListener{
-            homeBinding.model!!.init()
+            rvAdapter.setData(list)
         }
 
         bt_add.setOnClickListener {
-            homeBinding.model!!.add()
+            rvAdapter.add(list)
         }
 
         bt_remove.setOnClickListener {
-            homeBinding.model!!.remove()
+            rvAdapter.remove(list)
         }
     }
 }

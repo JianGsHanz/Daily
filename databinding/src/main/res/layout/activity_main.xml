@@ -4,10 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <!-- 默认数据-->
-        <variable
-            name="personInfo"
-            type="com.zyh.databinding.model.Person" />
         <!-- ViewModel 监听改变数据-->
         <variable
             name="model"
@@ -177,7 +173,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:onClick="@{()-> model.login()}"
+                android:onClick="onLogin"
                 android:text="LOGIN"
                 app:layout_constraintTop_toBottomOf="@id/et_passWord" />
 

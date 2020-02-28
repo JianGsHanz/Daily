@@ -1,13 +1,12 @@
 package com.zyh.databinding.model
 
 /**
- *Time:2019/11/7
+ *Time:2020/2/28
  *Author:zyh
  *Description:
  */
 class Person (
-    var name:String,
-    var age:Int,
-    var address: String,
-    var img: String
+    val name: String,
+    val age : Int,
+    val address:String
 )

@@ -1,32 +1,30 @@
 package com.zyh.databinding.viewmodel
 
-import android.content.Intent
+import android.app.Application
 import android.text.Editable
-import android.util.Log
-import android.widget.Toast
 import androidx.databinding.ObservableField
-import com.zyh.databinding.LMainActivity
-import com.zyh.databinding.SecondActivity
-import com.zyh.databinding.model.Person
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MutableLiveData
 import kotlin.random.Random
 
 /**
  *Time:2019/11/7
  *Author:zyh
- *Description:
+ *Description: 以注重生命周期的方式管理界面相关的数据（使activity横竖屏切换等情况下不会丢失数据）
  */
-class LMainViewModel(person: Person, private var context: LMainActivity) {
-    //观察属性
-    val name = ObservableField(person.name)
-    val age = ObservableField(person.age)
-    val address = ObservableField(person.address)
-    val img = ObservableField(person.img)
+class LMainViewModel(application: Application) : AndroidViewModel(application) {
+    //创建DataBinding观察属性
+    // 设置默认数据
+    val name = ObservableField<String>("ZhangYaoHua")
+    val age = ObservableField<Int>(18)
+    val address = ObservableField<String>("HanDan")
+    val img = ObservableField<String>("http://img3.cache.netease.com/photo/0001/2010-02-14/5VFM1R2800AN0001.jpg")
 
-    val userName = ObservableField("")
-    val passWord = ObservableField("")
+    val userName = ObservableField<String>()
+    val passWord = ObservableField<String>()
 
     //改变属性
-    fun changeModel(){
+    fun changeModel() {
         name.set("ZhangYaoHua${Random.nextInt(100)}")
         age.set(Random.nextInt(100))
         address.set("HanDan ${Random.nextInt(100)}")
@@ -42,25 +40,15 @@ class LMainViewModel(person: Person, private var context: LMainActivity) {
 //    }
 
     //对应EditText 的 afterTextChanged方法
-    fun changeUserName(p0: Editable?){
+    fun changeUserName(p0: Editable?) {
         userName.set(p0.toString())
     }
 
-    fun changePassWord(p0: Editable?){
+    fun changePassWord(p0: Editable?) {
         passWord.set(p0.toString())
     }
 
-    fun login(){
-        Log.e("login()","UserName = ${userName.get()},PassWord = ${passWord.get()}")
-        if (userName.get() == "abs"&&passWord.get() == "123"){
-            Toast.makeText(context,"登录成功",Toast.LENGTH_SHORT).show()
-            context.startActivity(Intent(context,SecondActivity::class.java))
-        }else{
-            Toast.makeText(context,"输入：UserName = ${userName.get()},PassWord = ${passWord.get()}",Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    fun changeImg(){
+    fun changeImg() {
         img.set("http://b-ssl.duitang.com/uploads/blog/201312/04/20131204184148_hhXUT.jpeg")
     }
 }

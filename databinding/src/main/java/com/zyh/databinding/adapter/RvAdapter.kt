@@ -15,31 +15,58 @@ import com.zyh.databinding.viewmodel.HomeViewModel
  *Author:zyh
  *Description: RV Adapter
  */
-class RvAdapter : RecyclerView.Adapter<RvAdapter.ViewHolder>{
+class RvAdapter : RecyclerView.Adapter<RvAdapter.ViewHolder> {
 
-    private var mList: MutableList<Person>
-    private var fragment:HomeFragment
-    constructor(fragment:HomeFragment,mList: MutableList<Person>){
-        this.mList = mList
+    private var mList: MutableList<Person>? = null
+    private var fragment: HomeFragment
+    private lateinit var viewModel: HomeViewModel
+
+    constructor(fragment: HomeFragment) {
         this.fragment = fragment
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
-        ViewHolder(DataBindingUtil.inflate(LayoutInflater.from(fragment.context),R.layout.item_rv,parent,false))
-
-    override fun getItemCount(): Int = mList.size
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(mList[position],fragment) //绑定数据
+    fun setViewModel(viewModel: HomeViewModel){
+        this.viewModel = viewModel
     }
 
-    class ViewHolder(private var binding:ItemRvBinding):RecyclerView.ViewHolder(binding.root){
-        fun bind(
-            person: Person,
-            fragment: HomeFragment  //绑定数据
-        ){
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
+        ViewHolder(
+            DataBindingUtil.inflate(
+                LayoutInflater.from(fragment.context),
+                R.layout.item_rv,
+                parent,
+                false
+            )
+        )
+
+    override fun getItemCount(): Int = mList?.size ?: 0
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.bind(mList!![position], viewModel) //绑定数据
+    }
+
+    class ViewHolder(private var binding: ItemRvBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(person: Person, viewModel: HomeViewModel) {
             binding.person = person
-            binding.model = HomeViewModel(fragment)
+            binding.model = viewModel
         }
+    }
+
+    fun setData(mList: MutableList<Person>) {
+        this.mList = mList
+        notifyDataSetChanged()
+    }
+
+    fun add(mList: MutableList<Person>) {
+        mList.add(0, Person("Js${mList.size + 1}", 0, ""))
+        this.mList = mList
+        notifyDataSetChanged()
+    }
+
+    fun remove(mList: MutableList<Person>) {
+        if (mList.size > 0)
+            mList.removeAt(0)
+        this.mList = mList
+        notifyDataSetChanged()
     }
 }
