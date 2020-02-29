@@ -2,6 +2,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+        <variable
+            name="listener"
+            type="com.zyh.databinding.fragment.HomeFragment.MyListener" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -14,6 +19,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@id/bt_add"
+            android:onClick="@{()->listener.onLoad()}"
             android:text="加载数据"/>
         <Button
             android:id="@+id/bt_add"
@@ -23,6 +29,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/bt_load"
             app:layout_constraintRight_toLeftOf="@id/bt_remove"
+            android:onClick="@{()->listener.add()}"
             android:text="添加数据"/>
         <Button
             android:id="@+id/bt_remove"
@@ -32,6 +39,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/bt_add"
             app:layout_constraintRight_toRightOf="parent"
+            android:onClick="@{()->listener.remove()}"
             android:text="移除数据"/>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv"

@@ -22,7 +22,7 @@ import kotlinx.android.synthetic.main.fragment_home.*
 class HomeFragment :Fragment(){
 
     private lateinit var homeBinding: FragmentHomeBinding
-    private val rvAdapter by lazy {
+    val rvAdapter by lazy {
         RvAdapter(this)
     }
     private val list :MutableList<Person> by lazy {
@@ -47,22 +47,21 @@ class HomeFragment :Fragment(){
         val viewModelProvider = ViewModelProvider(activity!!, amvf)
         val viewModel = viewModelProvider.get(HomeViewModel::class.java)
         rvAdapter.setViewModel(viewModel)
+        rvAdapter.setData(list)
         homeBinding.rv.adapter = rvAdapter
+        homeBinding.listener = MyListener()
         return homeBinding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
-        bt_load.setOnClickListener{
+    inner class MyListener{
+        fun onLoad(){
             rvAdapter.setData(list)
         }
-
-        bt_add.setOnClickListener {
+        fun add(){
             rvAdapter.add(list)
         }
-
-        bt_remove.setOnClickListener {
+        fun remove(){
             rvAdapter.remove(list)
         }
     }
