@@ -1,10 +1,13 @@
 package com.zyh.room
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 /**
@@ -21,31 +24,31 @@ class UserViewModel(application: Application) : AndroidViewModel(application){
     }
 
     fun insert(user: User){
-        CoroutineScope(Dispatchers.Default).launch {
+        viewModelScope.launch(Dispatchers.Default){
             userRepository.insert(user)
         }
     }
 
     fun insertAll(vararg user: User){
-        CoroutineScope(Dispatchers.Default).launch {
+        viewModelScope.launch(Dispatchers.Default){
             userRepository.insertAll(*user)
         }
     }
 
     fun deleteAll(){
-        CoroutineScope(Dispatchers.Default).launch {
+        viewModelScope.launch(Dispatchers.Default){
             userRepository.deleteAll()
         }
     }
 
     fun deleteById(id:Int){
-        CoroutineScope(Dispatchers.Default).launch {
+        viewModelScope.launch(Dispatchers.Default){
             userRepository.deleteById(id)
         }
     }
 
     fun update(oldId:Int = 0,userName: String = "",userSex: String = ""){
-        CoroutineScope(Dispatchers.Default).launch {
+        viewModelScope.launch(Dispatchers.Default){
             userRepository.update(oldId,userName,userSex)
         }
     }
