@@ -1,18 +1,20 @@
 package com.zyh.databinding.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.zyh.databinding.R
 import com.zyh.databinding.adapter.RvAdapter
 import com.zyh.databinding.databinding.FragmentHomeBinding
 import com.zyh.databinding.model.Person
 import com.zyh.databinding.viewmodel.HomeViewModel
-import kotlinx.android.synthetic.main.fragment_home.*
 
 /**
  *Time:2019/11/12
@@ -32,6 +34,9 @@ class HomeFragment :Fragment(){
             }
         }
     }
+
+    var refreshing = MutableLiveData<Boolean>()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -48,8 +53,12 @@ class HomeFragment :Fragment(){
         val viewModel = viewModelProvider.get(HomeViewModel::class.java)
         rvAdapter.setViewModel(viewModel)
         rvAdapter.setData(list)
+        homeBinding.hf = this
         homeBinding.rv.adapter = rvAdapter
         homeBinding.listener = MyListener()
+        refreshing.observe(this, Observer<Boolean> {
+            Log.i("HomeFragment", "refreshing $it")
+        })
         return homeBinding.root
     }
 
