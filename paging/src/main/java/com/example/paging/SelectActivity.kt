@@ -13,6 +13,6 @@ class SelectActivity : AppCompatActivity() {
 
         goLocal.setOnClickListener { startActivity(Intent(this@SelectActivity,MainActivity::class.java)) }
 
-        goNetWork.setOnClickListener { startActivity(Intent(this@SelectActivity,Main2Activity::class.java)) }
+        goRv.setOnClickListener { startActivity(Intent(this@SelectActivity,Main2Activity::class.java)) }
     }
 }

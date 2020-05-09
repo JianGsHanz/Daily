@@ -10,6 +10,9 @@ import com.example.paging.adapter.MyAdapter
 import com.example.paging.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
+/**
+ * 本地Room获取数据
+ */
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
