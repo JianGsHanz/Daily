@@ -23,7 +23,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
 
+        sourceCompatibility JavaVersion.VERSION_1_8
+
+        targetCompatibility JavaVersion.VERSION_1_8
+
+    }
 }
 
 dependencies {
@@ -37,6 +43,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     implementation 'android.arch.paging:runtime:1.0.1'
+    implementation 'androidx.paging:paging-runtime-ktx:2.1.2'
     implementation 'android.arch.paging:rxjava2:1.0.1'
 
     implementation "androidx.room:room-runtime:2.2.5"
@@ -45,4 +52,5 @@ dependencies {
     implementation "androidx.room:room-ktx:2.2.5"
     //管理ViewModel生命周期
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
+    implementation project(path: ':common')
 }

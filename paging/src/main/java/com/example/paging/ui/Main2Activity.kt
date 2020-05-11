@@ -1,15 +1,14 @@
-package com.example.paging
+package com.example.paging.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.View
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.paging.adapter.MyAdapter
+import com.example.paging.R
+import com.example.paging.RecyclerOnScrollListener
 import com.example.paging.adapter.MyAdapter2
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main2.*
 
 /**

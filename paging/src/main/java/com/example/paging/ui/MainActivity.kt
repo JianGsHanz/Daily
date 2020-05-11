@@ -1,4 +1,4 @@
-package com.example.paging
+package com.example.paging.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,6 +6,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.paging.R
 import com.example.paging.adapter.MyAdapter
 import com.example.paging.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*

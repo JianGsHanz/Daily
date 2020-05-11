@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SelectActivity">
+    tools:context=".ui.SelectActivity">
 
     <Button
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/goLocal"
+        app:layout_constraintTop_toBottomOf="@id/goNetWork"
         android:text="Recyclerview加载更多"
         android:id="@+id/goRv"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

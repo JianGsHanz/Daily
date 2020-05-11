@@ -1,6 +1,7 @@
 package com.example.paging
 
 import android.app.Application
+import com.example.common.ContextHolder
 import kotlin.properties.Delegates
 
 /**
@@ -16,6 +17,7 @@ class App :Application(){
 
     override fun onCreate() {
         super.onCreate()
+        ContextHolder.mAppContext = this
         instance = this
     }
 }
