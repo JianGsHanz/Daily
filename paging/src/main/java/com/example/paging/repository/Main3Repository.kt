@@ -7,17 +7,18 @@ import com.example.paging.bean.GithubAccount
 import com.example.paging.net.AgentApi
 
 class Main3Repository : BaseRepository() {
-    suspend fun test() = AgentApi.getApiService().collect(3).apiData()
+
+    private val toLiveData = Main3DataSourceFactory().toLiveData(
+        config = Config(
+            pageSize = 20,
+            enablePlaceholders = false,
+            maxSize = 200
+        )
+    )
+
 
     fun getAll() : LiveData<PagedList<GithubAccount>>{
-        val mdsf = Main3DataSourceFactory()
-        return mdsf.toLiveData(
-            config = Config(
-                pageSize = 20,
-                enablePlaceholders = false,
-                maxSize = 200
-            )
-        )
+        return toLiveData
     }
 
     inner class Main3DataSourceFactory : DataSource.Factory<Long, GithubAccount>() {
@@ -59,6 +60,9 @@ class Main3Repository : BaseRepository() {
                         AgentApi.getOtherApiService()
                             .getGithubAccount(params.key, params.requestedLoadSize)
                     callback.onResult(githubAccount)
+                },
+                error = {
+
                 }
             )
         }

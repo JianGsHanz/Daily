@@ -36,6 +36,7 @@ object InterceptorHelper{
             var response = chain.proceed(request)
             while (!response.isSuccessful && retryNum < maxRetry) {
                 retryNum++
+                response.close()
                 response = chain.proceed(request)
             }
             response

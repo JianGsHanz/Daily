@@ -1,6 +1,6 @@
 package com.example.paging.ui
 
-import android.util.Log
+import android.graphics.Color
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,11 +25,20 @@ class Main3Activity : BaseVmActivity<Main3ViewModel>() {
             adapter = myAdapter
         }
 
+        srl.apply {
+            setColorSchemeColors(Color.RED,Color.BLACK,Color.BLUE)
+            setOnRefreshListener {
+                mViewModel.getAll().value?.dataSource?.invalidate() //此方法会回调DataSource的loadInitial()
+            }
+        }
     }
 
     override fun initData() {
-//        mViewModel.test()
-        mViewModel.getAll().observe(this, Observer { myAdapter.submitList(it) })
+
+        mViewModel.getAll().observe(this, Observer {
+            myAdapter.submitList(it)
+            srl.isRefreshing = false
+        })
 
     }
 
