@@ -9,17 +9,17 @@
         </attr>
 
         <!-- tab -->
-        <attr name="q_tab_padding"/>
-        <attr name="q_tab_space_equal"/>
-        <attr name="q_tab_width"/>
+        <attr name="q_tab_padding" format="float"/>
+        <attr name="q_tab_space_equal" format="boolean"/>
+        <attr name="q_tab_width" format="float"/>
         <attr name="q_background" format="enum"/>
 
         <!-- title -->
-        <attr name="q_textsize"/>
-        <attr name="q_textSelectColor"/>
-        <attr name="q_textUnselectColor"/>
-        <attr name="q_textBold"/>
-        <attr name="q_textAllCaps"/>
+        <attr name="q_textsize" format="float"/>
+        <attr name="q_textSelectColor" format="integer"/>
+        <attr name="q_textUnselectColor" format="integer"/>
+        <attr name="q_textBold" format="integer"/>
+        <attr name="q_textAllCaps" format="boolean"/>
         <!-- 设置文字是否可见 -->
         <attr name="q_textVisible" format="boolean"/>
         <!-- 设置主题色 -->

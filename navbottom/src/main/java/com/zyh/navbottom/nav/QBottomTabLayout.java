@@ -341,9 +341,9 @@ public class QBottomTabLayout extends FrameLayout {
 
             ImageView publish = tabView.findViewById(R.id.publish);
             // 是否现在覆盖图片
-            if (mPublishMode == 1 && i == mCurrentTab && mTabEntitys.get(i).getTabCoverIcon() != 0) {
+            if (mPublishMode == 1 && i == mCurrentTab && (mTabEntitys.get(i).getTabCoverIcon() != 0 || !TextUtils.isEmpty(mTabEntitys.get(i).getTabCoverIcons()))) {
                 publish.setVisibility(VISIBLE);
-                publish.setImageResource(mTabEntitys.get(i).getTabCoverIcon());
+                Glide.with(this).load(mTabEntitys.get(i).getTabCoverIcon() != 0 ? mTabEntitys.get(i).getTabCoverIcon(): mTabEntitys.get(i).getTabCoverIcons()).into(publish);
             } else {
                 publish.setVisibility(GONE);
             }
@@ -391,8 +391,8 @@ public class QBottomTabLayout extends FrameLayout {
             ImageView publish = tabView.findViewById(R.id.publish);
 
 
-            if (mPublishMode == 1 && isSelect && mTabEntitys.get(i).getTabCoverIcon() != 0) {
-                publish.setImageResource(mTabEntitys.get(i).getTabCoverIcon());
+            if (mPublishMode == 1 && isSelect &&  (mTabEntitys.get(i).getTabCoverIcon() != 0 || !TextUtils.isEmpty(mTabEntitys.get(i).getTabCoverIcons()))) {
+                Glide.with(this).load(mTabEntitys.get(i).getTabCoverIcon() != 0 ? mTabEntitys.get(i).getTabCoverIcon(): mTabEntitys.get(i).getTabCoverIcons()).override(150,150).into(publish);
                 publish.setVisibility(VISIBLE);
             } else {
                 publish.setVisibility(GONE);
