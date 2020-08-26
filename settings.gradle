@@ -1,3 +1,4 @@
+include ':navigation'
 include ':app', ':jsbridge', 'viewpager2', 'databinding', 'dagger2', 'navbottom', 'popupwindow', 'password_input_view', 'zhihu', 'java_knowledge', ':common'
 include ':room'
 include ':paging'
