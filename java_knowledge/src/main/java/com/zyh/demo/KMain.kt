@@ -40,11 +40,14 @@ object KMain {
 //        getCharCount("zhangjiangshan")
         //冒泡排序
 //        bubble(arr)
-
-        quickSort(arr,0,arr.size - 1)
-        for (i in arr.indices){
-            println(arr[i])
-        }
+        //快速排序
+//        quickSort(arr,0,arr.size - 1)
+//        for (i in arr.indices){
+//            println(arr[i])
+//        }
+        //二分查找
+        Arrays.sort(arr)
+        println(search(arr,122))
     }
 
 
@@ -117,7 +120,7 @@ object KMain {
             println(arr[i])
         }
     }
-
+    //快速排序
     private fun quickSort(arr: Array<Int>?, start: Int, end: Int) {
         if (arr.isNullOrEmpty() || start > end) return
         var i = start
@@ -153,4 +156,22 @@ object KMain {
         }
 
     }
+    //二分查找
+    private fun search(arr: Array<Int>, k: Int) : Int{
+        var start = 0
+        var end = arr.size - 1
+        var mid = 0
+        while (start <= end){
+            mid = (start + end) / 2
+            if (arr[mid] == k) {
+                return mid
+            }else if (arr[mid] > k){ //如果大于k 从左边查找
+                end = mid - 1
+             }else{ //小于k 从右边查找
+                start = mid + 1
+             }
+        }
+        return -1
+    }
+
 }
